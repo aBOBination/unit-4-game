@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <title>RPG Game</title>
     </head>
@@ -11,21 +12,15 @@
         <div class="container-fluid">
             <div>Header</div>
             <div class="container-fluid row game-area">
-                <div class="left-area col-6 border">
-                    <div class="player-select">select player</div>
-                </div>
-                <div class="right-area col-6 border">
-                    <div class="fight-area">
-                        <div class="selection card m-5">
-                            You
-                        </div>
-                        <div class="attack text-center"></div>
-                        <button type="button" class="btn btn-primary text-center">attack</button>
-                        <div class="opponent card m-5">Opponent</div>
-                        <div class="opponents-remaining m-5 border">Opponent</div>
-                    </div>
+                <div class="col-12 border">
+                    <div class="card-group selection m-5"></div>
+                    <div class="attack card m-5">Attack</div>
+                    <button type="button" class="btn btn-primary text-center">attack</button>
+                    <div class="opponent m-5 border">Opponent</div>
+                    <div class="opponents-remaining m-5 border">Remaining Opponent</div>
                 </div>
             </div>
         </div>
+        <script src="assets/javascript/game.js"></script>
     </body>
 </html>
