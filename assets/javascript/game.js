@@ -40,7 +40,7 @@ var rpg = {
         this.options.push(this.player1, this.player2, this.player3, this.player4);
         for(var i = 0; i < this.options.length; i++){
             var playerCard = $("<div>");
-            playerCard.addClass("player-card card border");
+            playerCard.addClass("player-card options card border");
             playerCard.attr("id", this.options[i].name)
             playerCard.text(this.options[i].name)
             $(".selection").append(playerCard);
@@ -49,14 +49,18 @@ var rpg = {
 
     cardClick : function(clicked){
         if(this.player === false) {
+            var attacker = clicked.attr('id')
             this.player = true;
+            clicked.removeClass("options")
+            clicked.addClass("attacker");
             clicked.appendTo(".attack");
-            for(var i = 0; i < this.opponent.length; i++) {
-                // move all remaing to remaining opponents div
-            }
+            $(".options").appendTo(".opponents-remaining")
+            console.log(attacker)
+
         } else if(this.player === true && this.opponent === false) {
             this.opponent = true;
             clicked.appendTo(".opponent");
+
         }
     }
 }
