@@ -1,3 +1,12 @@
-.player-card {
-    width: 100%;
+.attack div{
+
+    background-color: green;
+}
+
+.opponent div{
+    background-color: red;
+}
+
+.red {
+    background-color: red;
 }
