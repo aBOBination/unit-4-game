@@ -14,33 +14,35 @@ var rpg = {
 
     opponentHp : 0,
 
+    opponentCounterAttack : 0,
+
     player1 : {
-        name : "Aragorn",
-        img : "assets/images/aragorn-200.jpg",
+        name : "Leonardo",
+        img : "assets/images/tmnt-leo.jpg",
         healthPoints : 120,
         attackPower : 8,
         counterAttackPower : 10
     },
 
     player2 : {
-        name : "Legolas",
-        img : "assets/images/legolas-200.png",
+        name : "Raphael",
+        img : "assets/images/tmnt-raff.jpg",
         healthPoints : 100,
         attackPower : 8,
         counterAttackPower : 10
     },
 
     player3 : {
-        name : "Gimli",
-        img : "assets/images/gimli-200.png",
+        name : "Donatello",
+        img : "assets/images/tmnt-donny.jpg",
         healthPoints : 180,
         attackPower : 8,
         counterAttackPower : 10
     },
 
     player4 : {
-        name : "player4",
-        img : "assets/images/gimli-200.png",
+        name : "Michelangelo",
+        img : "assets/images/tmnt-mickey.jpg",
         healthPoints : 150,
         attackPower : 8,
         counterAttackPower : 10
@@ -51,7 +53,7 @@ var rpg = {
         for(var i = 0; i < this.options.length; i++){
             var playerCard = $("<div>");
             playerCard.addClass("player-card options text-center card border");
-            playerCard.attr({"style": "max-width:150px", "id": this.options[i].name, "hp": this.options[i].healthPoints})
+            playerCard.attr({"style": "max-width:150px", "id": this.options[i].name, "hp": this.options[i].healthPoints, "attackPower": this.options[i].attackPower, "counter": this.options[i].counterAttackPower})
 
             var playerImg = $("<img>");
             playerImg.addClass("card-img-top")
@@ -60,7 +62,7 @@ var rpg = {
             var playerBody = $("<div>");
             playerBody.addClass("card-body")
 
-            var playerName = $("<h5>");
+            var playerName = $("<h6>");
             playerName.addClass("card-title")
             playerName.text(this.options[i].name)
 
@@ -77,27 +79,45 @@ var rpg = {
 
     cardClick : function(clicked){
         if(this.player === false) {
-            var hp = clicked.attr('hp')
             this.player = true;
-            this.attackHp = hp
+            this.attackHp = clicked.attr('hp')
+            this.attackPower = clicked.attr('attackPower')
             clicked.removeClass("options")
             clicked.addClass("attacker");
             clicked.appendTo(".attack");
             $(".options").addClass("red");
-            console.log(clicked)
 
         } else if(this.player === true && this.opponent === false) {
             this.opponent = true;
             this.opponentHp = clicked.attr('hp')
-            clicked.appendTo(".opponent");
-
+            this.opponentCounterAttack = clicked.attr('counter')
+            clicked.addClass("opponent");
+            clicked.appendTo(".opponent-container");
         }
     },
 
     attackClick : function() {
-        this.attackHp = this.attackHp - 20
-        console.log(this.attackHp)
-        console.log(this.opponentHp)
+        this.opponentHp = this.opponentHp - this.attackPower
+        this.attackPower = parseFloat(this.attackPower) + parseFloat($(".attacker").attr('attackPower'))
+        console.log(this.attackPower)
+        $(".opponent > .card-body > p").text(this.opponentHp)
+        if(this.opponentHp <= 0) {
+            this.wins++;
+            if(this.wins === 3) {
+                alert("You Win!")
+            }
+            $(".opponent-container").empty()
+            this.opponent = false;
+            alert("Round Won!")
+        } else {
+            this.attackHp = this.attackHp - this.opponentCounterAttack
+            $(".attacker > .card-body > p").text(this.attackHp)
+            if(this.attackHp <= 0) {
+                alert("You lose!")
+            }
+        }
+        
+        
     }
 }
 
