@@ -88,7 +88,7 @@ var rpg = {
             $(".options").addClass("red");
             $(".message").text("Choose your opponent!")
 
-        } else if(this.player === true && this.opponent === false) {
+        } else if(this.player === true && this.opponent === false && clicked.hasClass("attacker") === false) {
             this.opponent = true;
             this.opponentHp = clicked.attr('hp')
             this.opponentCounterAttack = clicked.attr('counter')
@@ -107,21 +107,27 @@ var rpg = {
         $(".opponent > .card-body > p").text(this.opponentHp)
         if(this.opponentHp <= 0) {
             this.wins++;
+            this.opponent = false;
+            $(".opponent-container").empty()
             if(this.wins === 3) {
                 $(".message").text("You beat everyone!")
+            } else {
+                $(".message").text("Choose your next opponent!")
             }
-            $(".opponent-container").empty()
-            this.opponent = false;
-            $(".message").text("Choose your next opponent!")
         } else {
             this.attackHp = this.attackHp - this.opponentCounterAttack
             $(".attacker > .card-body > p").text(this.attackHp)
             if(this.attackHp <= 0) {
                 $(".message").text("You lost!  Click reset to play again.")
+                }
             }
         }
+    },
+
+    reset : function() {
+        location.reload();
+
     }
-}
 }
 
 rpg.start()
@@ -136,7 +142,12 @@ $(".player-card").on("click", function() {
 });
 
 // Attack Button listener
-$(".btn").on("click", function() {
+$(".attack-btn").on("click", function() {
     // do stuff
     rpg.attackClick()
+});
+
+$(".reset-btn").on("click", function() {
+    // do stuff
+    rpg.reset()
 });
