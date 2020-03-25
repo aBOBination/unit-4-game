@@ -86,17 +86,21 @@ var rpg = {
             clicked.addClass("attacker");
             clicked.appendTo(".attack");
             $(".options").addClass("red");
+            $(".message").text("Choose your opponent!")
 
         } else if(this.player === true && this.opponent === false) {
             this.opponent = true;
             this.opponentHp = clicked.attr('hp')
             this.opponentCounterAttack = clicked.attr('counter')
+
             clicked.addClass("opponent");
             clicked.appendTo(".opponent-container");
+            $(".message").text("Fight!!!")
         }
     },
 
     attackClick : function() {
+        if(this.opponent === true) {
         this.opponentHp = this.opponentHp - this.attackPower
         this.attackPower = parseFloat(this.attackPower) + parseFloat($(".attacker").attr('attackPower'))
         console.log(this.attackPower)
@@ -104,21 +108,20 @@ var rpg = {
         if(this.opponentHp <= 0) {
             this.wins++;
             if(this.wins === 3) {
-                alert("You Win!")
+                $(".message").text("You beat everyone!")
             }
             $(".opponent-container").empty()
             this.opponent = false;
-            alert("Round Won!")
+            $(".message").text("Choose your next opponent!")
         } else {
             this.attackHp = this.attackHp - this.opponentCounterAttack
             $(".attacker > .card-body > p").text(this.attackHp)
             if(this.attackHp <= 0) {
-                alert("You lose!")
+                $(".message").text("You lost!  Click reset to play again.")
             }
         }
-        
-        
     }
+}
 }
 
 rpg.start()
@@ -129,6 +132,7 @@ rpg.start()
 $(".player-card").on("click", function() {
     // do stuff
     rpg.cardClick($(this))
+    console.log($(this))
 });
 
 // Attack Button listener
