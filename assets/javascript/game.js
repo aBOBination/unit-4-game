@@ -109,7 +109,7 @@ var rpg = {
         if(this.opponent === true && this.attackHp > 0) {
         this.opponentHp = this.opponentHp - this.attackPower
         this.attackPower = parseFloat(this.attackPower) + parseFloat($(".attacker").attr('attackPower'))
-        $(".fight-message").text("You attached " + opponent.attr('id') + " for " + this.attackPower + " damage!")
+        $(".fight-message").text("You attacked " + opponent.attr('id') + " for " + this.attackPower + " damage!")
         $(".opponent > .card-body > p").text(this.opponentHp)
         if(this.opponentHp <= 0) {
             this.wins++;
@@ -119,15 +119,17 @@ var rpg = {
                 $(".opponent-container").text("You beat everyone!")
                 $(".message").text("You beat everyone!")
                 $(".fight-message").text("Click reset to play again!")
+                $(".reset-btn").css("display","inline")
             } else {
                 $(".opponent-container").text("Choose your next opponent!")
                 $(".message").text("Choose your next opponent!")
             }
         } else {
             this.attackHp = this.attackHp - this.opponentCounterAttack
-            $(".fight-message").html("You attached " + opponent.attr('id') + " for " + this.attackPower + " damage!"+ " <br/> " + opponent.attr('id') + " attacked you back for " + this.opponentCounterAttack + " damage!")
+            $(".fight-message").html("You attacked " + opponent.attr('id') + " for " + this.attackPower + " damage!"+ " <br/> " + opponent.attr('id') + " attacked you back for " + this.opponentCounterAttack + " damage!")
             $(".attacker > .card-body > p").text(this.attackHp)
             if(this.attackHp <= 0) {
+                $(".attacker > .card-body > p").text("You Died!")
                 $(".message").text("You lost!  Click reset to play again.")
                 $(".reset-btn").css("display","inline")
                 }
