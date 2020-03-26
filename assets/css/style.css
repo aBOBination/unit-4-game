@@ -1,12 +1,29 @@
+body {
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Titan One', cursive;
+
+}
+
 .attack div{
 
-    background-color: green;
+    background-color: #5BB02B;
 }
 
 .opponent div{
-    background-color: red;
+    background-color: #DD1800;
 }
 
 .red {
-    background-color: red;
+    background-color: #DD1800;
+}
+
+h3 {
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.card-title {
+    font-size: small;
 }

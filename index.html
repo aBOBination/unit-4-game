@@ -5,25 +5,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
         <link rel="stylesheet" href="assets/css/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Titan+One&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <title>RPG Game</title>
     </head>
-    <body>
+    <body style="background-image: url('assets/images/tmnt-bg.png')";>
         <div class="container-fluid">
             <h3>TMNT RPG GAME!</h4>
             <h4 class="message">Select your player!</h3>
             <div class="container-fluid row game-area">
-                <div class="col-12 border">
+                <div class="col-12 ">
                     <div class="card-group selection mx-auto"></div>
-                    <div class="attack card ">Attack</div>
+                    <div class="attack mt-2 mb-2"></div>
                     <div class="mx-auto">
-                        <button type="button" class="btn btn-primary attack-btn text-center mx-auto">attack</button>
-                        <button type="button" class="btn btn-primary reset-btn text-center mx-auto">Reset</button>
-
+                        <button type="button" class="btn btn-primary attack-btn text-center mx-auto" style="display:none;">attack</button>
+                        <button type="button" class="btn btn-primary reset-btn text-center mx-auto" style="display:none;">Reset</button>
                     </div>
-                    <div class="opponent-container border">Opponent</div>
-
+                    <div class="opponent-container"></div>
+                    <p class="fight-message"></p>
                 </div>
             </div>
         </div>
