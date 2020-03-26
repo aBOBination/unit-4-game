@@ -143,22 +143,15 @@ var rpg = {
 
 rpg.start()
 
-
-// Card Click listener
-
 $(".player-card").on("click", function() {
-    // do stuff
     rpg.cardClick($(this))
     console.log($(this))
 });
 
-// Attack Button listener
 $(".attack-btn").on("click", function() {
-    // do stuff
     rpg.attackClick()
 });
 
 $(".reset-btn").on("click", function() {
-    // do stuff
     rpg.reset()
 });
